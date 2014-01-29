@@ -14,7 +14,6 @@ public class UserRedisRepository {
 
 	private static final Logger LOG = LoggerFactory.getLogger(UserRedisRepository.class);
 
-
 	private static final String KEY_USER_ID_COUNTER = "global:uid";
 	
 	private static final String KEYS_USERS_BY_ID = "uid";
