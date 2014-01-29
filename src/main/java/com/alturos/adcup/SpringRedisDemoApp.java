@@ -52,6 +52,7 @@ public class SpringRedisDemoApp {
 		LOG.debug("Create AnnotationConfigApplicationContext .. ctx");
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(
 				SpringRedisDemoApp.class);
+		
 
 		LOG.debug("Get a StringRedisTemplateBean ");
 		StringRedisTemplate template = ctx.getBean(StringRedisTemplate.class);

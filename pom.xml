@@ -8,26 +8,51 @@
 	<packaging>jar</packaging>
 
 
+	<!--  TODO try without this parent  -->
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>0.5.0.M5</version>
 	</parent>
 
+
 	<name>spring-redis-demo</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<!-- with 4.0.1 we had some strange exceptions -->
+		<spring.version>3.2.3.RELEASE</spring.version>
+		<spring-redis.version>1.1.1.RELEASE</spring-redis.version>		
 	</properties>
 
 	<dependencies>
 
 		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+
+		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-redis</artifactId>
-			<version>1.1.0.RELEASE</version>
+			<version>${spring-redis.version}</version>
 		</dependency>
+
+		<!-- <dependency> <groupId>javax.inject</groupId> <artifactId>javax.inject</artifactId> 
+			<version>1</version> </dependency> -->
+
+
+		<!-- <dependency> <groupId>javax.inject</groupId> <artifactId>com.springsource.javax.inject</artifactId> 
+			<version>1.0.0</version> </dependency> -->
 
 		<dependency>
 			<groupId>redis.clients</groupId>
@@ -35,16 +60,16 @@
 			<version>2.1.0</version>
 		</dependency>
 
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-        </dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+		</dependency>
 
 
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-        </dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
 
 
 		<dependency>
