@@ -34,7 +34,7 @@ public class UserPersistenceTest {
 	
 	@Test
 	public void isUserAddedSuccessfully() {
-		LOG.debug("isUserAddedSuccessfully");		
+		LOG.debug("test isUserAddedSuccessfully ...");		
 		Long userId = service.addUser(new AddUserEvent(new User("userName", "password")));
 		
 		assertNotNull(userId);
