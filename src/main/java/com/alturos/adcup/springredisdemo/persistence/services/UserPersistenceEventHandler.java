@@ -1,11 +1,13 @@
 package com.alturos.adcup.springredisdemo.persistence.services;
 
+import static com.alturos.adcup.springredisdemo.persistence.services.PersistenceMappingUtil.*;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.alturos.adcup.springredisdemo.events.AddUserEvent;
-import com.alturos.adcup.springredisdemo.persistence.domain.User;
+import com.alturos.adcup.springredisdemo.events.RequestUserByIdEvent;
 import com.alturos.adcup.springredisdemo.persistence.repository.UserRedisRepository;
 
 public class UserPersistenceEventHandler implements UserPersistenceService {
@@ -16,18 +18,19 @@ public class UserPersistenceEventHandler implements UserPersistenceService {
 	private UserRedisRepository repository;
 	
 	@Override
-	public Long addUser(AddUserEvent addUserEvent) {
+	public String addUser(AddUserEvent addUserEvent) {
 		LOG.debug("add new user {}", addUserEvent.getNewUser());
 		
-		
-		return repository.addUser(
+		Long id = repository.addUser(
 				fromDomain(addUserEvent.getNewUser()));
-
+		
+		return String.valueOf(id); 
 	}
 
-	private User fromDomain(
-			com.alturos.adcup.springredisdemo.core.domain.User domainUser) {
-		return new User(domainUser.getUserName(), domainUser.getPassword());
+	@Override
+	public com.alturos.adcup.springredisdemo.core.domain.User getUserById(
+			RequestUserByIdEvent requestUserByIdEvent) {
+		return toDomain(repository.getUserById(requestUserByIdEvent.getUserId()));
 	}
 
 }

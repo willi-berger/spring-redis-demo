@@ -1,5 +1,8 @@
 package com.alturos.adcup.springredisdemo.persistence.repository;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +34,7 @@ public class UserRedisRepository {
 	
 	
 
-	public Long addUser(User user) {
+	public long addUser(User user) {
 		LOG.debug("Adding new user {} to REDIS repo", user);
 				
 		long id = userIdCounter.incrementAndGet();
@@ -41,5 +44,16 @@ public class UserRedisRepository {
 		userOps.put("password", user.getPassword());
 						
 		return id;
+	}
+	
+	
+	public User getUserById(String userId) {
+		LOG.debug("Get user by ID {}", userId);
+		
+		String key = KEYS_USERS_BY_ID + ":" + userId;
+		BoundHashOperations<String, String, String> userOps = template.boundHashOps(key);
+		List<String> mgetResultList = userOps.multiGet(Arrays.asList("name", "password"));
+		
+		return new User(mgetResultList.get(0), mgetResultList.get(1));
 	}
 }
