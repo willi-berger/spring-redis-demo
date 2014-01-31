@@ -10,11 +10,11 @@ public class PersistenceMappingUtil {
 	
 	public static User fromDomain(
 			com.alturos.adcup.springredisdemo.core.domain.User domainUser) {
-		return new User(domainUser.getUserName(), domainUser.getPassword());
+		return new User(domainUser.getId(), domainUser.getUserName(), domainUser.getPassword());
 	}
 
 	public static com.alturos.adcup.springredisdemo.core.domain.User toDomain(User user) {
-		return new com.alturos.adcup.springredisdemo.core.domain.User(user.getUserName(), user.getPassword());
+		return new com.alturos.adcup.springredisdemo.core.domain.User(user.getId(), user.getUserName(), user.getPassword());
 	}
 	
 	public static List<com.alturos.adcup.springredisdemo.core.domain.User> toDomain(Collection<User> users) {

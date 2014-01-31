@@ -1,4 +1,4 @@
-package com.alturos.adcup.springredisdemo.core.domain;
+package com.alturos.adcup.springredisdemo.core.domain; 
 
 public class User {
 	private String id; 
@@ -23,8 +23,9 @@ public class User {
 		this.password = password;
 	}
 
-	public User(String userName, String password) {
+	public User(String id, String userName, String password) {
 		super();
+		this.id = id;
 		this.userName = userName;
 		this.password = password;
 	}

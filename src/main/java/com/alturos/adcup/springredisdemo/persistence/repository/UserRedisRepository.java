@@ -18,6 +18,8 @@ import org.springframework.data.redis.support.atomic.RedisAtomicLong;
 import com.alturos.adcup.springredisdemo.persistence.domain.User;
 
 
+
+
 public class UserRedisRepository {
 
 	private static final Logger LOG = LoggerFactory.getLogger(UserRedisRepository.class);
@@ -80,7 +82,7 @@ public class UserRedisRepository {
 		BoundHashOperations<String, String, String> userOps = template.boundHashOps(key);
 		List<String> mgetResultList = userOps.multiGet(Arrays.asList("name", "password"));
 		
-		return new User(mgetResultList.get(0), mgetResultList.get(1));
+		return new User(userId, mgetResultList.get(0), mgetResultList.get(1));
 	}
 	
 	/**
@@ -109,15 +111,16 @@ public class UserRedisRepository {
 		SortQuery<String> query = 
 				SortQueryBuilder.sort(KEY_USERS_LIST)					
 					.by("uid:*->name").alphabetical(true)
+					.get("#")
 					.get("uid:*->name")
 					.get("uid:*->password")
 					.limit(start, len).order(Order.ASC).build();
 		
 		BulkMapper<User, String> bm = new BulkMapper<User, String>() {
-
 			@Override
 			public User mapBulk(List<String> tuple) {
-				return new User(tuple.get(0), tuple.get(1));
+				User u = new User(tuple.get(0), tuple.get(1), tuple.get(2));
+				return u;
 			}			
 		};
 		

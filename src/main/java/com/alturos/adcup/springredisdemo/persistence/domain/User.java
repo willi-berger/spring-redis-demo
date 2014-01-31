@@ -1,6 +1,8 @@
 package com.alturos.adcup.springredisdemo.persistence.domain;
 
 public class User {
+	private String id;
+	
 	private String userName;
 	
 	private String password;
@@ -21,8 +23,9 @@ public class User {
 		this.password = password;
 	}
 
-	public User(String userName, String password) {
+	public User(String id,String userName, String password) {
 		super();
+		this.id = id;
 		this.userName = userName;
 		this.password = password;
 	}
@@ -30,6 +33,14 @@ public class User {
 	@Override
 	public String toString() {
 		return String.format("User[userName=%s],  password=%s]", userName, password);
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 	
 }
