@@ -1,6 +1,8 @@
 package com.alturos.adcup.springredisdemo.core.domain;
 
 public class User {
+	private String id; 
+	
 	private String userName;
 	
 	private String password;
@@ -30,6 +32,14 @@ public class User {
 	@Override
 	public String toString() {
 		return String.format("User[userName=%s],  password=%s]", userName, password);
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 	
 }
