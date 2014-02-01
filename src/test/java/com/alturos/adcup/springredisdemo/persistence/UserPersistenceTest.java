@@ -17,7 +17,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.alturos.adcup.SpringRedisDemoApp;
 import com.alturos.adcup.springredisdemo.core.domain.User;
 import com.alturos.adcup.springredisdemo.events.AddUserEvent;
+import com.alturos.adcup.springredisdemo.events.RequestGetUsersEvent;
 import com.alturos.adcup.springredisdemo.events.RequestUserByIdEvent;
+import com.alturos.adcup.springredisdemo.events.RequestUserByNameEvent;
 import com.alturos.adcup.springredisdemo.persistence.services.UserPersistenceService;
 
 @RunWith(SpringJUnit4ClassRunner.class)

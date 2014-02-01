@@ -4,9 +4,9 @@ import java.util.List;
 
 import com.alturos.adcup.springredisdemo.core.domain.User;
 import com.alturos.adcup.springredisdemo.events.AddUserEvent;
+import com.alturos.adcup.springredisdemo.events.RequestGetUsersEvent;
 import com.alturos.adcup.springredisdemo.events.RequestUserByIdEvent;
-import com.alturos.adcup.springredisdemo.persistence.RequestGetUsersEvent;
-import com.alturos.adcup.springredisdemo.persistence.RequestUserByNameEvent;
+import com.alturos.adcup.springredisdemo.events.RequestUserByNameEvent;
 
 
 public interface UserPersistenceService {

@@ -10,9 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.alturos.adcup.springredisdemo.core.domain.User;
 import com.alturos.adcup.springredisdemo.events.AddUserEvent;
+import com.alturos.adcup.springredisdemo.events.RequestGetUsersEvent;
 import com.alturos.adcup.springredisdemo.events.RequestUserByIdEvent;
-import com.alturos.adcup.springredisdemo.persistence.RequestGetUsersEvent;
-import com.alturos.adcup.springredisdemo.persistence.RequestUserByNameEvent;
+import com.alturos.adcup.springredisdemo.events.RequestUserByNameEvent;
 import com.alturos.adcup.springredisdemo.persistence.repository.UserRedisRepository;
 
 public class UserPersistenceEventHandler implements UserPersistenceService {
