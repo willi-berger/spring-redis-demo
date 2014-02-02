@@ -1,10 +1,11 @@
 package com.alturos.adcup.springredisdemo.persistence;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
-import java.util.Arrays;
 import java.util.List;
 
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,28 +15,39 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.alturos.adcup.SpringRedisDemoApp;
+import com.alturos.adcup.SpringRedisDemoAppForTest;
 import com.alturos.adcup.springredisdemo.core.domain.User;
 import com.alturos.adcup.springredisdemo.events.AddUserEvent;
 import com.alturos.adcup.springredisdemo.events.RequestGetUsersEvent;
 import com.alturos.adcup.springredisdemo.events.RequestUserByIdEvent;
 import com.alturos.adcup.springredisdemo.events.RequestUserByNameEvent;
+import com.alturos.adcup.springredisdemo.persistence.repository.UserRedisRepository;
 import com.alturos.adcup.springredisdemo.persistence.services.UserPersistenceService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { PersistenseServiceConfiguration.class,
-		SpringRedisDemoApp.class })
+		SpringRedisDemoAppForTest.class } )
 public class UserPersistenceTest {
 
 	private static final Logger LOG = LoggerFactory
 			.getLogger(UserPersistenceTest.class);
 
+	@Autowired
+	private UserRedisRepository repository;
+	
 	@BeforeClass
 	public static void setup() {
-		LOG.debug("inititializing test case ..");
-
+		LOG.debug("inititializing test class ..");
+		
 	}
 
+	@Before
+	public void before() {
+		LOG.debug("inititializing test case ..");
+		repository.flush();
+	}
+	
+	
 	@Autowired
 	private UserPersistenceService service;
 

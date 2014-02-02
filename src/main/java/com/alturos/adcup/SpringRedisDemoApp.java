@@ -22,9 +22,21 @@ public class SpringRedisDemoApp {
 
 	static final Logger LOG = LoggerFactory.getLogger(SpringRedisDemoApp.class);
 	
+	
+	
 	@Bean
 	JedisConnectionFactory connectionFactory() {
-		return new JedisConnectionFactory();
+		JedisConnectionFactory factory = new JedisConnectionFactory();
+		factory.setDatabase(redisDbIndex());
+		return factory;
+	}
+
+	/**
+	 * the redis DB index to use
+	 * @return
+	 */
+	protected int redisDbIndex() {
+		return 0;
 	}
 
 	@Bean

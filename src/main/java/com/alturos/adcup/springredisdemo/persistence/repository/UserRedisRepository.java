@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.connection.SortParameters.Order;
+import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.BoundHashOperations;
 import org.springframework.data.redis.core.BulkMapper;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -37,6 +38,8 @@ public class UserRedisRepository {
 	@Autowired
 	public UserRedisRepository(StringRedisTemplate template) {
 		this.template = template;
+		
+		//TODO this creates a "global:uid" when we use another redis DB (e.g. 9) this key is created before we switch DB to 9
 		this.userIdCounter = new RedisAtomicLong(KEY_USER_ID_COUNTER, template.getConnectionFactory());
 	}
 
@@ -92,6 +95,7 @@ public class UserRedisRepository {
 	 * @return
 	 */
 	public User getUserByName(String userName) {
+				
 		LOG.debug("Get user by user name {}", userName);
 		String uid = template.boundValueOps(keyForUserByName(userName)).get();
 		
@@ -141,6 +145,20 @@ public class UserRedisRepository {
 
 	private String keyForUserById(long id) {
 		return KEYS_USERS_BY_ID + ":" + Long.valueOf(id);
+	}
+	
+	/**
+	 * select the redis DB index to use
+	 * @param index
+	 */
+	public void select(int index) {
+		LOG.debug("select redis DB {}", index);
+		((JedisConnectionFactory)template.getConnectionFactory()).setDatabase(index);
+	}
+
+	public void flush() {
+		LOG.debug("flush redis");
+		template.getConnectionFactory().getConnection().flushDb();		
 	}
 
 }
