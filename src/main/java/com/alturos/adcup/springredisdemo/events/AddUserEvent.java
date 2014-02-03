@@ -9,10 +9,8 @@ public class AddUserEvent {
 	// WS-1 change again
 	private int j;
 	// for testing git conflics  -WS-2
-	private int i;
-	
-	
-
+	// WS-2 changed i -> j2
+	private int j2;
 	
 	private User newUser;
 
