@@ -6,6 +6,7 @@ public class AddUserEvent {
 
 	// for testing git conflics  -WS-1
 	// WS-1 changed
+	// WS-1 change again
 	private int j;
 	// for testing git conflics  -WS-2
 	private int i;
