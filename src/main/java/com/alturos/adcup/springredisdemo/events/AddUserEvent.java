@@ -4,6 +4,9 @@ import com.alturos.adcup.springredisdemo.core.domain.User;
 
 public class AddUserEvent {
 
+	// for testing git conflics  -WS-1
+	private int j;
+	
 	private User newUser;
 
 	public User getNewUser() {
