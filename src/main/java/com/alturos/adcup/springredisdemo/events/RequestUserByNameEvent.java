@@ -2,6 +2,8 @@ package com.alturos.adcup.springredisdemo.events;
 
 public class RequestUserByNameEvent {
 	
+	private String ws2_a;
+	
 	private String userName;
 
 	public String getUserName() {
