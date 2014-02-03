@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.alturos.adcup.SpringRedisDemoAppForTest;
+import com.alturos.adcup.SpringRedisDemoApp;
 import com.alturos.adcup.springredisdemo.core.domain.User;
 import com.alturos.adcup.springredisdemo.events.AddUserEvent;
 import com.alturos.adcup.springredisdemo.events.RequestGetUsersEvent;
@@ -26,7 +26,7 @@ import com.alturos.adcup.springredisdemo.persistence.services.UserPersistenceSer
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { PersistenseServiceConfiguration.class,
-		SpringRedisDemoAppForTest.class } )
+		SpringRedisDemoApp.class } )
 public class UserPersistenceTest {
 
 	private static final Logger LOG = LoggerFactory
