@@ -15,6 +15,7 @@ import com.alturos.adcup.springredisdemo.Person;
 
 /**
  * Spring redis demo
+ * test insert
  * 
  */
 @Configuration
